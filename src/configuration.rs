@@ -1,3 +1,4 @@
+use serde_aux::field_attributes::deserialize_number_from_string;
 #[derive(serde::Deserialize)]
 pub struct Settings {
     pub database: DatabaseSettings,
@@ -9,12 +10,14 @@ pub struct DatabaseSettings {
     pub username: String,
     pub password: String,
     pub host: String,
+    #[serde(deserialize_with = "deserialize_number_from_string")]
     pub port: u16,
     pub database_name: String,
 }
 
 #[derive(serde::Deserialize)]
 pub struct ApplicationSettings {
+    #[serde(deserialize_with = "deserialize_number_from_string")]
     pub port: u16,
     pub host: String,
 }
@@ -60,8 +63,13 @@ pub fn get_configuration() -> Result<Settings, config::ConfigError> {
         ))
         // Add from environment variables
         // E.g. `APP_APPLICATION__PORT=5001 would set `Settings.application.port`
-        .add_source(config::Environment::with_prefix("app").separator("__"))
+        .add_source(
+            config::Environment::with_prefix("APP")
+                .prefix_separator("_")
+                .separator("__"),
+        )
         .build()?;
+    dbg!(&settings);
 
     // Deserialize the config object into your Settings struct:
     // let settings: Settings = settings.try_deserialize()?;

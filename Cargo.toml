@@ -14,6 +14,7 @@ env_logger = "0.11.6"
 log = "0.4.22"
 reqwest = "0.12.12"
 serde = { version = "1.0.217", features = ["derive"] }
+serde-aux = "4.5.0"
 # sqlx = { version = "0.5.7", features = ["runtime-actix-rustls", "macros", "postgres", "uuid", "chrono", "migrate"] }
 # `runtime-tokio` is required for actix-web, no more `runtime-actix-rustls`
 sqlx = { version = "0.8.3", features = ["runtime-tokio", "macros", "postgres", "uuid", "chrono", "migrate"] }

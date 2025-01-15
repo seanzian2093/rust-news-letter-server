@@ -3,7 +3,7 @@ use env_logger::Env;
 use rust_news_letter_server::configuration::get_configuration;
 use rust_news_letter_server::startup::{run, run_0, run_1};
 use rust_news_letter_server::telemetry::{get_subscriber, init_subscriber};
-use sqlx::postgres::PgPoolOptions;
+// use sqlx::postgres::PgPoolOptions;
 use sqlx::PgPool;
 use std::net::TcpListener;
 
