@@ -1,0 +1,33 @@
+[package]
+name = "rust-news-letter-server"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "src/lib.rs"
+[dependencies]
+actix-rt = "2.10.0"
+actix-web = "4.9.0"
+chrono = "0.4.39"
+config = "0.15.5"
+env_logger = "0.11.6"
+log = "0.4.22"
+reqwest = "0.12.12"
+serde = { version = "1.0.217", features = ["derive"] }
+# sqlx = { version = "0.5.7", features = ["runtime-actix-rustls", "macros", "postgres", "uuid", "chrono", "migrate"] }
+# `runtime-tokio` is required for actix-web, no more `runtime-actix-rustls`
+sqlx = { version = "0.8.3", features = ["runtime-tokio", "macros", "postgres", "uuid", "chrono", "migrate"] }
+tokio = "1.43.0"
+tracing = { version = "0.1.41", features = ["log"] }
+tracing-actix-web = "0.7.15"
+tracing-bunyan-formatter = "0.3.10"
+tracing-futures = "0.2.5"
+tracing-log = "0.2.0"
+tracing-subscriber = { version = "0.3.19", features = ["env-filter", "registry"] }
+uuid = { version = "1.11.1", features = ["v4"] }
+[[bin]]
+path = "src/main.rs"
+name="rust-news-letter-server"
+
+[dev-dependencies]
+once_cell = "1.20.2"
